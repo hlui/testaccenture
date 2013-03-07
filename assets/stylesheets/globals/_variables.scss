@@ -1,0 +1,48 @@
+
+// Vertical Rhythm
+$base-font-size: 13px;
+$base-line-height: 24px;
+@include establish-baseline();
+
+// Header Font Sizes
+$h1_size:     $base-font-size + 9px;
+$h2_size:     $base-font-size + 6px;
+$h3_size:     $base-font-size + 3px;
+$h4_size:     $base-font-size;
+
+// Standard Spacing (padding or margin)
+$spacing:     10px;
+
+//colors
+$purple:      #5d257d; // purple
+$blue:        #3160aa; // blue
+$grey:        #c7c7c7; // grey
+$light_grey:  #efefef; // light grey
+$soft_black:  #333;    // soft black
+$error_color: #ee2a24; // red
+
+// Font colors
+$text_color:  $soft_black;
+$link_color:  $blue;
+$h1_color:    $purple;
+$h2_color:    $blue;
+$h3_color:    $grey;
+$h4_color:    $light_grey;
+
+// Border Radius 
+$border_radius: 3px;
+
+// Box Shadow
+$box_shadow: 0 1px 3px rgba(0,0,0,0.9), 0 -1px 2px rgba(250,250,250,0.8);
+$inset_box_shadow: inset 0 1px 3px rgba(0,0,0,0.8);
+
+// Text Shadow
+$white_text_shadow: 0 1px #fff;
+
+// Borders
+$border1: 1px solid $grey;
+$border2: 1px dotted $grey;
+$border3: 1px solid #aaa; // border around buttons or boxes
+
+// Base Button Widths
+$btn_width:     100px;

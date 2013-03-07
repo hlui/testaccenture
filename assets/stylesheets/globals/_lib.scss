@@ -1,0 +1,244 @@
+/******************************** Gradients *********************************/
+
+// Gradients mixer
+// @mixin heading_mixer(font-size, color, font-weight, text-shadow, padding);
+@mixin grad_mixer($grad_color, $color: false, $text-shadow: false) {
+  @include background($grad_color);
+  @if $color {
+    color: $color; }
+  @if $text-shadow {
+    text-shadow: $text-shadow; }
+}
+
+// Blue Gradient
+@mixin grad1 {
+  $grad1_color_1 : $purple;
+  $grad1_color_2 : adjust-color($purple, $lightness: -10%, $saturation: -20%);
+  @include grad_mixer(linear-gradient(top, $grad1_color_1 0%, $grad1_color_2 100%), #fff);
+}
+
+/******************************** Buttons ********************************/
+
+@mixin button_base {
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: $spacing;
+  padding: $spacing;
+  display: block;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  @include box-shadow($box_shadow, inset 0 1px 1px rgba(250,250,250,0.8), inset 0 -1px 0 rgba(0,0,0,0.3));
+  @include border-radius($border_radius);
+  @include transition(opacity, 0.2s, ease-out);
+  &:hover, &:active {
+    opacity: 0.9;
+    @include transition(opacity, 0.2s, ease-in);
+  }
+
+  &.mw_sml {
+    width: $btn_width;
+  }
+  &.mw_med {
+    width: $btn_width*2;
+  }
+  &.mw_full {
+    width: auto;
+  }
+}
+
+.mw_btn1 {
+  @include grad1;
+  @include button_base;
+}
+
+/******************************** Headings *********************************/
+
+// Headings mixer
+// @mixin grad_mixer(gradient, color, text-shadow);
+@mixin heading_mixer ($mw_h_size, $mw_h_color, $mw_font_weight, $mw_text_shadow) {
+  @include font-size($mw_h_size);
+  color: $mw_h_color;
+  font-weight: $mw_font_weight;
+  text-shadow: $mw_text_shadow;
+}
+// Headings
+.mw_h1 {
+  @include heading_mixer($h1_size, $h1_color, bold, $white_text_shadow);
+}
+.mw_h2 {
+  @include heading_mixer($h2_size, $h2_color, bold, $white_text_shadow);
+}
+.mw_h3 {
+  @include heading_mixer($h3_size, $h3_color, bold, $white_text_shadow);
+}
+.mw_h4 {
+  @include heading_mixer($h4_size, $h4_color, bold, $white_text_shadow);
+}
+
+
+/********************************** Bars *********************************/
+
+@mixin bar_inner_base {
+  display: block;
+  line-height: 1.4;
+  text-decoration: none;
+  font-weight: bold;
+  padding: $spacing;
+  @include box-shadow(inset 0 1px 0 rgba(250,250,250,0.5), inset 0 -1px 1px rgba(0,0,0,0.3));
+}
+
+.mw_bar1 {
+  @include bar_inner_base;
+  @include grad1;
+}
+
+/******************************** Box ********************************/
+
+.mw_box {
+  @include box-shadow($box_shadow);
+  @include border-radius($border_radius);
+  margin: $spacing;
+  overflow: hidden;
+  background: #fff;
+
+  [class*='mw_bar'][class*='mw_accordion'] {
+    @include border-radius($border_radius);
+    &[data-ur-state="enabled"] {
+      @include border-radius($border_radius $border_radius 0 0);
+    }
+  }
+}
+
+/******************************** Box Flex********************************/
+
+.mw_flex_box {
+  @include display-box;
+  @include box-orient(horizontal);
+  @include box-align(stretch);
+  .mw_flex_box_item_1 {
+    display: block;
+    @include box-flex(1);
+  }
+  .mw_flex_box_item_2 {
+    display: block;
+    @include box-flex(2);
+  }
+  .mw_flex_box_item_3 {
+    display: block;
+    @include box-flex(3);
+  }
+  .mw_flex_box_item_4 {
+    display: block;
+    @include box-flex(4);
+  }
+  .mw_flex_box_item_5 {
+    display: block;
+    @include box-flex(5);
+  }
+}
+
+/*************************** List & List Items *********************/
+
+.mw_list {
+  @include box-shadow($box_shadow);
+  @include border-radius($border_radius);
+  margin: $spacing;
+  background: #fff;
+  overflow: hidden;
+  [class*='mw_tbar'][class*='mw_accordion'] {
+    @include border-radius($border_radius);
+    &[data-ur-state="enabled"] {
+      @include border-radius($border_radius $border_radius 0 0);
+    }
+  }
+  .mw_list_item {
+    padding: $spacing;
+    border-bottom: 1px solid #ddd;
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+}
+
+/********************************* Forms *********************************/
+
+form.mw_form {
+  padding: $spacing;
+  label, .mw_label {
+    font-weight: bold;
+    @include font-size(12px);
+    color: #333;
+    text-shadow: $white_text_shadow;
+  }
+  .mw_row {
+    padding:0px 10px 5px 10px;
+    overflow: hidden;
+  }
+}
+
+input[type="text"], input[type="tel"], input[type="email"], .mw_input {
+  display: block;
+  padding: 7px;
+  border: none;
+  color: #666;
+  @include font-size(13px);
+  text-shadow: $white_text_shadow;
+  font-weight: bold;
+  @include appearance(none);
+  @include box-shadow($inset_box_shadow);
+  @include border-radius($border_radius);
+  @include background(linear-gradient(top, #eee 0%, #fff 100%));
+  @include transition(all, 1s, ease-in);
+  &:focus {
+    color: #000;
+    outline: none;
+    @include transition(all, 1s, ease-in);
+    @include background(linear-gradient(top, #fff 0%, #eee 100%));
+    @include box-shadow($inset_box_shadow, 0 0 3px 2px #fff);
+  }
+  &::-webkit-input-placeholder {
+     color: #999;
+  }
+  
+  &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+    display: none;
+  }
+}
+
+/*************** START STYLES APPLIED TO MOOVWEB ELEMENTS ****************/
+
+// two line ellipsis
+@mixin twoline_ellipsis {
+  -webkit-line-clamp: 2;
+  @include display-box;
+  @include box-orient(vertical);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Test class for identifying selections
+.mw_testing {
+  border: 4px solid purple !important;
+  background: #555;
+  overflow: hidden;
+  margin: 2px 0;
+}
+
+// Margin
+.mw_margin {
+  margin: $spacing;
+}
+
+// Center
+.mw_center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+// This class can be applied in tritium, to hide what only scss can't do for you.
+.mw_hide {
+  display: none;
+}
